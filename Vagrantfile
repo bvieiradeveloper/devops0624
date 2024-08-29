@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
 	config.vm.define "controle" do |controle|
 		controle.vm.box = "shekeriev/debian-11"
 		controle.vm.hostname = "controle"
-		controle.vm.network "private_network", ip: "vm"
+		controle.vm.network "private_network", ip: "172.17.177.100"
   		controle.vm.provider "virtualbox" do |vb|
      			vb.gui = false
      			vb.memory = "4096"
