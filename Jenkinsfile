@@ -30,7 +30,25 @@ pipeline {
  		   }
  		}
  	   }
-       }	
+       }
+
+       stage('Teste Aplicação') {
+ 	  steps {
+ 	      // Testes automatizados da aplicação
+ 	      sh 'docker-compose -f docker-compose.yml up -d'
+ 	
+	      // Realize os testes nos serviços em execução
+ 	      // Exemplo de teste usando curl para verificar se o serviço web está respondendo
+ 	      sh 'curl -I http://localhost'
+ 	
+	      sh 'docker-compose -f docker-compose.yml down'
+ 	  }	
+       }
+       stage('Aprovação') {
+       	   steps {
+	       input 'Deseja prosseguir com o Deploy e Push?'	
+           }
+       }		
    }
 }
 
